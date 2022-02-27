@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animated mobile menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+           @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+           :root{
+            --bg_body:#dff9fb;
+            --bg_nav:#220455;
+            --color_nav:#644c89;
+            --color_nav_active:#fff;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+   
+        body{
+            display: grid;
+            place-items: center;
+            min-width: 100%;
+            min-height: 100vh;
+            background-color: var(--bg_body);
+            font-family:"Poppins";
+        }
+        .nav{
+            position:relative;
+            list-style: none;
+            background-color: var(--bg_nav);
+            display: flex;
+            border-radius: 20px;
+            height: 80px;
+        }
+        .nav li a{
+            text-decoration: none;
+            color: var(--color_nav);
+            width: 120px;
+            height: 100%;
+            display: inline-grid;
+            display: -moz-inline-grid;
+            display: -ms-inline-grid;
+            place-items: center;
+            font-size: 25px;
+            z-index: 1;
+            position: relative;
+
+        }
+        .nav li a .title{
+            display: none;
+            font-size: 16px;
+        }
+        .nav li a:hover{
+            color: var(--color_nav_active);
+        }
+        .nav li a.nav_item_active{
+            color: var(--color_nav_active);
+            transform: translateY(-20%);
+            font-size: 35px;
+            transition: .5s cubic-bezier(0.175, 0.885, 0.32, 1.275) ;
+        }
+        .nav li a.nav_item_active .title{
+            display: block;
+        }
+        .nav .nav_indicator{
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background-color: var(--bg_nav);
+            position: absolute;
+            top: -35px;
+            left: calc(300px - 45px);
+            transition: .5s cubic-bezier(0.175, 0.885, 0.32, 1.275) ;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <ul class="nav">
+        <span class="nav_indicator"></span>
+        <li>
+            <a href="#">
+                <span class="icon"><i class="fa-solid fa-house"></i></span>
+                <span class="title">Home</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="icon"><i class="fa-solid fa-user"></i></span>
+                <span class="title">Home</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav_item_active">
+                <span class="icon"><i class="fa-solid fa-message"></i></span>
+                <span class="title">Home</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="icon"><i class="fa-solid fa-camera"></i></span>
+                <span class="title">Home</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="icon"><i class="fa-solid fa-gear"></i></span>
+                <span class="title">Home</span>
+            </a>
+        </li>
+    </ul>
+
+
+    <script>
+        let nav = document.querySelector(`.nav`);
+        nav.querySelectorAll(`li a`).forEach((element, index) => {
+            element.onclick = ()=> {
+                console.log()
+                if(element.classList.contains(`nav_item_active`)){
+                    return;
+                }else{
+                    nav.querySelector(`li a.nav_item_active`).classList.remove(`nav_item_active`)
+                
+                    element.classList.add(`nav_item_active`)
+
+                    let nav_indicator = nav.querySelector(`.nav_indicator`)
+                    nav_indicator.style.left = `calc(${index * 120 + 60}px - 45px)`
+
+                }
+                
+                
+            }
+        })
+
+    
+    </script>
+</body>
+</html>
